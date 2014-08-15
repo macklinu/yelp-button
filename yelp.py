@@ -1,4 +1,5 @@
 import random
+import os
 
 from yelpapi import YelpAPI
 
@@ -7,10 +8,10 @@ from json_response import JsonResponse
 
 class Yelp(YelpAPI):
     def __init__(self):
-        super(Yelp, self).__init__("rPYK4RMm9kHcqLWHUaJA8Q",
-                                   "29wVTMD5UKkZN96wnlY6HFDaWTM",
-                                   "rh7RzRVIxJlLGpLeP-o7-nsEcX_T0JO5",
-                                   "DSm6t5HoLiYDbSo0syXIdydGrps")
+        super(Yelp, self).__init__(os.environ.get('YELP_CONSUMER_KEY'),
+                                   os.environ.get('YELP_CONSUMER_SECRET'),
+                                   os.environ.get('YELP_TOKEN'),
+                                   os.environ.get('YELP_TOKEN_SECRET'))
 
     def get_random_business(self):
         query = JsonResponse(**self.search_query(term='food',
