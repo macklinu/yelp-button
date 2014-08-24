@@ -1,11 +1,13 @@
+from pprint import PrettyPrinter
+
 from yelp import Yelp
 
 
 def main():
+    pp = PrettyPrinter(indent=2)
     yelp = Yelp()
-    random_business = yelp.get_random_business()
-    details = yelp.get_business_details(random_business)
-    print details.name + ": " + str(details.rating) + " stars"
+    details = yelp.get_business()
+    pp.pprint(details)
 
 
 if __name__ == '__main__':
